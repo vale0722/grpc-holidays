@@ -1,0 +1,27 @@
+syntax = "proto3";
+package holidays;
+
+service Holidays {
+  rpc register (stream User) returns (stream User) {};
+  rpc query (stream Request) returns (stream Response) {};
+  rpc index (stream Data) returns (stream Data) {};
+}
+
+message User {
+  string user = 1;
+  string holidays = 2;
+}
+
+message Request {
+  string user = 1;
+  string days = 2;
+}
+
+message Response {
+  string user = 1;
+  string response = 2;
+}
+
+message Data {
+  repeated User users = 1;
+}
