@@ -43,14 +43,14 @@ let getResponse = (message, call) => {
                 message.user.holidays = message.user.holidays - message.days;
                 call.write({
                     user: message.user.user,
-                    response: `Se le ha autorizado el permiso, Le quedan ${message.user.holidays} de vacaciones`
+                    response: `Se le ha autorizado el permiso, Le quedan ${message.user.holidays} días de vacaciones`
                 });
                 return;
             }
 
             call.write({
                 user: message.user.user,
-                response: 'Lo lamentamos, la solicitud no se pudo realizar, no tienes los suficientes dias de vaciones'
+                response: `Lo lamentamos, la solicitud no se pudo realizar, no tienes los suficientes días de vacaciones\n ${message.user.user} tan solo tiene ${message.user.holidays} días de vacaciones`
             });
         } else {
             call.write({
