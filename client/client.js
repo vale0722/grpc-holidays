@@ -48,9 +48,9 @@ let Menu = () => {
 Menu();
 
 let Register = () => {
-    reader.question("Ingrese el nombre de usuario:", answer => {
+    reader.question("Ingrese el nombre de usuario: ", answer => {
         username = answer;
-        reader.question("Ingrese número de dias de vacaciones disponibles:", answer => {
+        reader.question("Ingrese número de dias de vacaciones disponibles: ", answer => {
             holidays = answer;
             let channel = client.register();
             channel.write({
@@ -91,10 +91,16 @@ let StartRequest = () => {
 
 let Index = () => {
     let channel = client.index();
+    console.log("Los usuarios registrados son:")
     channel.on('data', (message) => {
-        message.users.forEach((item) => {
-            console.log(`${item.user}: ${item.holidays}`)
-        })
+        if(message.users.length==0){
+            console.log("No hay usuarios registrados")
+        }else{
+            message.users.forEach((item) => {
+                console.log(`${item.user}: ${item.holidays} días`)
+            })
+        }
+        console.log("\n");
         Menu();
     })
 }
